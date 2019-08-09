@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <!-- Customer Form View -->
+        <record model="ir.ui.view" id="view_partner_form_umroh">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="after">
+                    <group string="Additional Information">
+                        <group>
+                            <field name="no_identitas"/>
+                            <field name="jenis_kelamin"/>
+                            <field name="nama_ayah"/>
+                            <field name="nama_ibu"/>
+                        </group>
+                        <group>
+                            <field name="tempat_lahir"/>
+                            <field name="tanggal_lahir"/>
+                            <field name="gol_darah"/>
+                            <field name="status_pernikahan"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+        
+
+        
+        <!-- ### Membuat Action/Event Object Customer ### -->   
+        <record model="ir.actions.act_window" id="Travel_list_action">
+                <field name="name">Data Customers</field>
+                <field name="res_model">res.partner</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="help" type="html">
+                    <p class="oe_view_nocontent_create">Buatlah Data Customer...</p>
+                </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,119 @@
+<odoo>
+  <data>
+    <!-- Paket Perjalanan Tree View -->
+
+    <record model="ir.ui.view" id="paket_perjalanan_tree_view">
+      <field name="name">paket.perjalanan.tree</field>
+      <field name="model">paket.perjalanan</field>
+      <field name="arch" type="xml">
+        <tree string="Paket Perjalanan">
+          <field name="name"/>
+          <field name="product_id"/>
+          <field name="tgl_berangkat"/>
+          <field name="tgl_pulang"/>
+          <field name="quota"/>
+          <field name="quota_progress" widget="progressbar"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Paket Perjalanan Form View -->
+    <record model="ir.ui.view" id="paket_perjalanan_form_view">
+      <field name="name">paket.perjalanan.form</field>
+      <field name="model">paket.perjalanan</field>
+      <field name="arch" type="xml">
+        <form string="Form Paket Perjalanan">
+        <sheet>
+            <group col="4">
+              <field name="name"/>
+              <field name="product_id"/>
+              <field name="tgl_berangkat"/>
+              <field name="tgl_pulang"/>
+              <field name="quota"/>
+              <field name="quota_progress" widget="pogressbar"/>
+            </group>
+            <notebook>
+              <page string="Hotel Lines">
+                <field name="hotel_line">
+                  <tree editable="bottom">
+                    <field name="partner_id"/>
+                    <field name="tgl_awal"/>
+                    <field name="tgl_akhir"/>
+                    <field name="kota"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Airline Lines">
+                <field name="pesawat_line">
+                  <tree editable="bottom">
+                    <field name="partner_id"/>
+                    <field name="tgl_berangkat"/>
+                    <field name="kota_asal"/>
+                    <field name="kota_tujuan"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Schedule Lines">
+                <field name="acara_line">
+                  <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="tgl"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Jamaah Lines">
+                  <field name="peserta_line">
+                    <tree editable="bottom">
+                      <field name="partner_id"/>
+                    </tree>
+                  </field>
+              </page>
+            </notebook>
+            <group>
+              <field name="note" placeholder="Notes" nolabel="1"/>
+            </group>
+        </sheet>
+        </form>
+      </field>
+    </record>
+
+<!-- Paket Perjalanan Sequence -->
+ 
+<record id="paket_perjalanan_sequence" model="ir.sequence">
+    <field name="name">Paket Perjalanan</field>
+    <field name="code">paket.perjalanan</field>
+    <field name="prefix">PP/%(month)s/%(y)s/</field>
+    <field name="padding">4</field>
+</record>
+ 
+ 
+ 
+<!-- Paket Perjalanan Action -->
+ 
+<record model="ir.actions.act_window" id="paket_perjalanan_action">
+    <field name="name">Paket Perjalanan</field>
+    <field name="res_model">paket.perjalanan</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+ 
+ 
+
+
+<!-- ### Membuat Menu Bar ### -->
+<menuitem id="main_travel_umroh_menu" name="Home Travel Umroh"/>
+
+
+
+<!-- ### Membuat Menu Title Tree ### -->
+<menuitem id="travel_umroh_menu" name="Menu Travel" parent="main_travel_umroh_menu"/>
+<menuitem id="paket_perjalanan_menu" name="Paket Perjalanan" parent="main_travel_umroh_menu" action="paket_perjalanan_action"/>
+
+
+<!-- ### Membuat Sub Menu ### -->
+<menuitem id="Data Customer" name="Data Customer" parent="travel_umroh_menu" action="Travel_list_action"/>
+<menuitem id="Paket Perjalanan" name="Paket Perjalanan" parent="paket_perjalanan_menu" action="paket_perjalanan_action"/> 
+
+
+  </data>
+</odoo>
